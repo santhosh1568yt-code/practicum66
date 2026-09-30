@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practicum 6 - Flexbox</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; background: #f4f4f4; }
+  h1 { text-align: center; }
+  h2 { background: #333; color: white; padding: 8px; }
+  h3 { margin: 15px 0 5px; }
+
+  .container { background: #ddd; border: 2px solid #333; padding: 10px; margin-bottom: 10px; }
+  .box { background: #4a90d9; color: white; padding: 15px; border: 1px solid #fff; text-align: center; }
+  .tall { height: 250px; }
+
+
+  .row            { display: flex; flex-direction: row; }
+  .row-reverse    { display: flex; flex-direction: row-reverse; }
+  .column         { display: flex; flex-direction: column; }
+  .column-reverse { display: flex; flex-direction: column-reverse; }
+
+  .nowrap       { display: flex; flex-wrap: nowrap; }
+  .wrap         { display: flex; flex-wrap: wrap; }
+  .wrap-reverse { display: flex; flex-wrap: wrap-reverse; }
+  .nowrap .box, .wrap .box, .wrap-reverse .box { width: 150px; }
+
+  .flow { display: flex; flex-flow: row wrap; }
+  .flow .box { width: 200px; }
+
+  .j-start   { display: flex; justify-content: flex-start; }
+  .j-center  { display: flex; justify-content: center; }
+  .j-end     { display: flex; justify-content: flex-end; }
+  .j-between { display: flex; justify-content: space-between; }
+  .j-around  { display: flex; justify-content: space-around; }
+  .j-evenly  { display: flex; justify-content: space-evenly; }
+
+  .a-start    { display: flex; align-items: flex-start; height: 150px; }
+  .a-center   { display: flex; align-items: center; height: 150px; }
+  .a-end      { display: flex; align-items: flex-end; height: 150px; }
+  .a-stretch  { display: flex; align-items: stretch; height: 150px; }
+  .a-baseline { display: flex; align-items: baseline; height: 150px; }
+
+  .ac { display: flex; flex-wrap: wrap; height: 250px; }
+  .ac .box { width: 30%; }
+  .ac-start   { align-content: flex-start; }
+  .ac-center  { align-content: center; }
+  .ac-end     { align-content: flex-end; }
+  .ac-between { align-content: space-between; }
+  .ac-around  { align-content: space-around; }
+  .ac-stretch { align-content: stretch; }
+
+  .gap        { display: flex; flex-wrap: wrap; gap: 20px; }
+  .row-gap    { display: flex; flex-wrap: wrap; row-gap: 30px; }
+  .column-gap { display: flex; flex-wrap: wrap; column-gap: 40px; }
+  .gap .box, .row-gap .box, .column-gap .box { width: 150px; }
+
+
+  /* 1. order */
+  .order-demo { display: flex; }
+  .o1 { order: 3; }
+  .o2 { order: 1; }
+  .o3 { order: 2; }
+  .o4 { order: 4; }
+
+  .grow-demo { display: flex; }
+  .g1 { flex-grow: 1; }
+  .g2 { flex-grow: 2; }
+  .g3 { flex-grow: 3; }
+
+  .shrink-demo { display: flex; }
+  .shrink-demo .box { width: 400px; }
+  .s1 { flex-shrink: 1; }
+  .s2 { flex-shrink: 3; }
+  .s3 { flex-shrink: 0; }   
+
+  .basis-demo { display: flex; }
+  .b1 { flex-basis: 100px; }
+  .b2 { flex-basis: 250px; }
+  .b3 { flex-basis: 30%; }
+
+  .short-demo { display: flex; }
+  .f1 { flex: 1 0 100px; }
+  .f2 { flex: 2 1 100px; }
+  .f3 { flex: 1; }
+
+  .self-demo { display: flex; height: 200px; }
+  .as-auto     { align-self: auto; }
+  .as-start    { align-self: flex-start; }
+  .as-center   { align-self: center; }
+  .as-end      { align-self: flex-end; }
+  .as-baseline { align-self: baseline; }
+  .as-stretch  { align-self: stretch; }
+</style>
+</head>
+<body>
+
+<h1>Practicum No 6 - Flexbox Layout</h1>
+
+<h2>Flex Container Properties</h2>
+
+<h3>1. flex-direction: row</h3>
+<div class="container row">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+</div>
+
+<h3>flex-direction: row-reverse</h3>
+<div class="container row-reverse">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+</div>
+
+<h3>flex-direction: column</h3>
+<div class="container column">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+</div>
+
+<h3>flex-direction: column-reverse</h3>
+<div class="container column-reverse">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+</div>
+
+<h3>2. flex-wrap: nowrap</h3>
+<div class="container nowrap">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+  <div class="box">4</div><div class="box">5</div><div class="box">6</div>
+  <div class="box">7</div><div class="box">8</div><div class="box">9</div>
+</div>
+
+<h3>flex-wrap: wrap</h3>
+<div class="container wrap">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+  <div class="box">4</div><div class="box">5</div><div class="box">6</div>
+  <div class="box">7</div><div class="box">8</div><div class="box">9</div>
+</div>
+
+<h3>flex-wrap: wrap-reverse</h3>
+<div class="container wrap-reverse">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+  <div class="box">4</div><div class="box">5</div><div class="box">6</div>
+  <div class="box">7</div><div class="box">8</div><div class="box">9</div>
+</div>
+
+<h3>3. Flex Shorthand: flex-flow (row wrap)</h3>
+<div class="container flow">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+  <div class="box">4</div><div class="box">5</div><div class="box">6</div>
+</div>
+
+<h3>4. justify-content: flex-start</h3>
+<div class="container j-start">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+</div>
+
+<h3>justify-content: center</h3>
+<div class="container j-center">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+</div>
+
+<h3>justify-content: flex-end</h3>
+<div class="container j-end">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+</div>
+
+<h3>justify-content: space-between</h3>
+<div class="container j-between">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+</div>
+
+<h3>justify-content: space-around</h3>
+<div class="container j-around">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+</div>
+
+<h3>justify-content: space-evenly</h3>
+<div class="container j-evenly">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+</div>
+
+<h3>Stretch and Baseline (align-items)</h3>
+
+<h3>align-items: flex-start</h3>
+<div class="container a-start">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+</div>
+
+<h3>align-items: center</h3>
+<div class="container a-center">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+</div>
+
+<h3>align-items: flex-end</h3>
+<div class="container a-end">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+</div>
+
+<h3>align-items: stretch</h3>
+<div class="container a-stretch">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+</div>
+
+<h3>align-items: baseline</h3>
+<div class="container a-baseline">
+  <div class="box" style="font-size:16px;">1</div>
+  <div class="box" style="font-size:30px;">2</div>
+  <div class="box" style="font-size:22px;">3</div>
+</div>
+
+<h3>5. align-content: flex-start</h3>
+<div class="container ac ac-start">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+  <div class="box">4</div><div class="box">5</div><div class="box">6</div>
+</div>
+
+<h3>align-content: center</h3>
+<div class="container ac ac-center">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+  <div class="box">4</div><div class="box">5</div><div class="box">6</div>
+</div>
+
+<h3>align-content: flex-end</h3>
+<div class="container ac ac-end">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+  <div class="box">4</div><div class="box">5</div><div class="box">6</div>
+</div>
+
+<h3>align-content: space-between</h3>
+<div class="container ac ac-between">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+  <div class="box">4</div><div class="box">5</div><div class="box">6</div>
+</div>
+
+<h3>align-content: space-around</h3>
+<div class="container ac ac-around">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+  <div class="box">4</div><div class="box">5</div><div class="box">6</div>
+</div>
+
+<h3>align-content: stretch</h3>
+<div class="container ac ac-stretch">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+  <div class="box">4</div><div class="box">5</div><div class="box">6</div>
+</div>
+
+<h3>6. gap: 20px</h3>
+<div class="container gap">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+  <div class="box">4</div><div class="box">5</div><div class="box">6</div>
+</div>
+
+<h3>row-gap: 30px</h3>
+<div class="container row-gap">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+  <div class="box">4</div><div class="box">5</div><div class="box">6</div>
+</div>
+
+<h3>column-gap: 40px</h3>
+<div class="container column-gap">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+  <div class="box">4</div><div class="box">5</div><div class="box">6</div>
+</div>
+
+<h2>Flex Item Properties</h2>
+
+<h3>1. order (Box 1 = 3, Box 2 = 1, Box 3 = 2, Box 4 = 4)</h3>
+<div class="container order-demo">
+  <div class="box o1">Box 1</div>
+  <div class="box o2">Box 2</div>
+  <div class="box o3">Box 3</div>
+  <div class="box o4">Box 4</div>
+</div>
+
+<h3>2. flex-grow (1, 2, 3)</h3>
+<div class="container grow-demo">
+  <div class="box g1">grow 1</div>
+  <div class="box g2">grow 2</div>
+  <div class="box g3">grow 3</div>
+</div>
+
+<h3>3. flex-shrink (1, 3, 0)</h3>
+<div class="container shrink-demo">
+  <div class="box s1">shrink 1</div>
+  <div class="box s2">shrink 3</div>
+  <div class="box s3">shrink 0</div>
+</div>
+
+<h3>4. flex-basis (100px, 250px, 30%)</h3>
+<div class="container basis-demo">
+  <div class="box b1">basis 100px</div>
+  <div class="box b2">basis 250px</div>
+  <div class="box b3">basis 30%</div>
+</div>
+
+<h3>5. flex shorthand (1 0 100px, 2 1 100px, 1)</h3>
+<div class="container short-demo">
+  <div class="box f1">flex: 1 0 100px</div>
+  <div class="box f2">flex: 2 1 100px</div>
+  <div class="box f3">flex: 1</div>
+</div>
+
+<h3>6. align-self</h3>
+<div class="container self-demo">
+  <div class="box as-auto">auto</div>
+  <div class="box as-start">flex-start</div>
+  <div class="box as-center">center</div>
+  <div class="box as-end">flex-end</div>
+  <div class="box as-baseline">baseline</div>
+  <div class="box as-stretch">stretch</div>
+</div>
+
+</body>
+</html>
